@@ -140,10 +140,10 @@ $pays_population = array(
     'Mexique' => 122273500,
     'Allemagne' => 82800000,
 );
-function funct($key, $pays) {
-    return $pays . " il y a " . $key . " d'habitants<br/>";
-}
-$map = array_map("funct", $pays_population, array_keys($pays_population));
+
+$map = array_map(function ($value, $key) {
+    return $key . " il y a " . $value . " d'habitants<br/>";
+}, $pays_population, array_keys($pays_population));
 
 foreach ($map as $v) {
     echo $v;
