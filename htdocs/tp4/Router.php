@@ -5,6 +5,16 @@ class Router
 {
     function process()
     {
+        $base_uri = $_SERVER["REQUEST_URI"];
+        $str = file_get_contents('tp4/routes.json');
+        $json = json_decode($str);
+        $uri = "";
+        foreach ($json as $value) {
+            if($base_uri == $value->{"path"}) {
+                $uri = $value;
+            }
+        }
+
         /**
          * ex http://localhost/
          *
@@ -27,16 +37,6 @@ class Router
          * mapping entre $uri et routes.json
          * Prevoir route non connue => 404
          */
-
-        $base_uri = $_SERVER["REQUEST_URI"];
-        $str = file_get_contents('tp4/routes.json');
-        $json = json_decode($str);
-        $uri = "";
-        foreach ($json as $value) {
-            if($base_uri == $value->{"path"}) {
-                $uri = $value;
-            }
-        }
 
         if($uri != NULL) {
             $controller = $uri->{'controller'};

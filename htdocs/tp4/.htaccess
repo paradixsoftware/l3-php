@@ -1,8 +1,9 @@
-<IfModule mod_rewrite.c >
-    RewriteEngine On
+<IfModule mod_rewrite.c>
 
-    RewriteCond %{REQUEST_FILENAME} - f [OR]
-    RewriteCond %{REQUEST_FILENAME} |-f
-    RewriteRule ^(_*)$ index.php [L,SQA]
+   RewriteEngine On
+
+   RewriteCond %{REQUEST_FILENAME}  -f [OR]
+   RewriteCond %{REQUEST_FILENAME} !-f
+   RewriteRule ^(.*)$ index.php [L,QSA]
 
 </IfModule>
