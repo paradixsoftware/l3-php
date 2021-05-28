@@ -42,7 +42,7 @@ class Router
 
             $a = 'app\Controller\\' . $cont_method[0];
             $b = new $a;
-            $s = "" . $cont_method[1];
+            $s = strval($cont_method[1]);
 
             echo $b->$s();
         } else {
