@@ -9,11 +9,9 @@ class Router
         $str = file_get_contents('tp4/routes.json');
         $json = json_decode($str);
         $uri = "";
-        foreach ($json as $value) {
-            if($base_uri == $value->{"path"}) {
+        foreach ($json as $value)
+            if($base_uri == $value->{"path"})
                 $uri = $value;
-            }
-        }
 
         /**
          * ex http://localhost/
