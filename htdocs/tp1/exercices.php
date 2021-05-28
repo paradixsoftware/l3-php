@@ -140,8 +140,13 @@ $pays_population = array(
     'Mexique' => 122273500,
     'Allemagne' => 82800000,
 );
-foreach ($pays_population as $item => $value) {
-    echo $item . " il y a " . $value . " d'habitants<br/>";
+function funct($key, $pays) {
+    return $pays . " il y a " . $key . " d'habitants<br/>";
+}
+$map = array_map("funct", $pays_population, array_keys($pays_population));
+
+foreach ($map as $v) {
+    echo $v;
 }
 /**
  * 11.
@@ -155,25 +160,11 @@ $keys = array(
     "x24p"
 );
 
-function sort_by_nb($keys) {
-    $array = [];
 
-    while (sizeof($array) != sizeof($keys)) {
-        $str = "";
-        $val = 9999;
-        foreach ($keys as $k) {
-            if(strlen($k) < $val and !in_array($k, $array)) {
-                $str = $k;
-                $val = strlen($k);
-            }
-        }
-
-        array_push($array, $str);
-    }
-    var_dump($array);
-}
-
-sort_by_nb($keys);
+$sorted = usort($keys, function ($a, $b) {
+    return strlen($a) - strlen($b);
+});
+var_dump($keys);
 
 /* résultat une fois ordonné :
 array(4) {
