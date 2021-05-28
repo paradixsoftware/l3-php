@@ -160,7 +160,6 @@ $keys = array(
     "x24p"
 );
 
-
 $sorted = usort($keys, function ($a, $b) {
     return strlen($a) - strlen($b);
 });
