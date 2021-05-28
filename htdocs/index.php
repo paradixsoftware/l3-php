@@ -1,2 +1,2 @@
-<?php echo  "hello World";
+<?php include("tp1/exercices.php"); ?>
 
