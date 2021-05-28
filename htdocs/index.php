@@ -1,1 +1,3 @@
-<?php include("tp1/exercices.php");
+<?php
+
+include("tp4/index.php");
