@@ -1,3 +1,3 @@
 <?php
 
-include("tp4/index.php");
+include("tp1/index.php");
