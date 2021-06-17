@@ -7,9 +7,18 @@ namespace app\Controller;
 abstract class AbstractController
 {
     private $path = "tp4/app/";
+    private $data = [];
 
     function render(string $template, array $args = []) {
-        include($this->path.$template);
-        extract($args);
+        $this->data = $args;
+        include $this->path . 'templates/' . $template;
+    }
+
+    function getData(string $key)
+    {
+        if (isset($this->data[$key])) {
+            return $this->data[$key];
+        }
+        return null;
     }
 }

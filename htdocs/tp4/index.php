@@ -7,6 +7,9 @@ error_reporting(E_ALL);
 require_once "Autoload.php";
 Autoload::register();
 
+
+$d = new database();
+
 $router = new Router();
 $router->process();
 
