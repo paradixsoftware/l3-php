@@ -7,3 +7,5 @@
 // SELECT
 // Create table
 // INSERT
+
+$dbh = new PDO('mysql:host=mysql;dbname=eurovent', "root", "password");
