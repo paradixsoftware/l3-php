@@ -13,7 +13,7 @@ class CatalogController extends AbstractController
         $list_product = $repo->findAll();
 
 
-        echo $this->render('catalogues/values.phtml', ['products' => $list_product]);
+        echo $this->render('catalogues/view.phtml', ['products' => $list_product]);
     }
 
     function viewProduct() {
