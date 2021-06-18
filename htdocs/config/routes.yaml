@@ -5,3 +5,11 @@
 homepage:
   path: /
   controller: App\Controller\HomeController::home
+
+productPage:
+  path: /productInsert
+  controller: App\Controller\InsertController::createProduct
+
+CustomerPage:
+  path: /customerInsert
+  controller: App\Controller\InsertController::createCustomer
