@@ -7,7 +7,7 @@ homepage:
   controller: App\Controller\HomeController::home
 
 product:
-  path: /product
+  path: /catalog
   controller: App\Controller\ProductController::view
 
 customer:
