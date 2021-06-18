@@ -1,0 +1,15 @@
+<?php
+$productList = $this->getData('products');
+?>
+
+<?php include('tp4/app/templates/head.phtml') ?>
+
+<ul>
+
+<?php foreach ($productList as $product) : ?>
+    <li><?= $product->getName() ?> à <?= $product->getPrice() ?>€</li>
+<?php endforeach; ?>
+</ul>
+
+<?php include('tp4/app/templates/footer.phtml') ?>
+

@@ -1,0 +1,19 @@
+{
+    "name": "l3/web",
+    "description": "Projet L3 Web avancé",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "L3\\Web\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jimmy MOnborren",
+            "email": "jimmy.monborren@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.3"
+    }
+}
