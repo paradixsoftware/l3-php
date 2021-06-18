@@ -9,10 +9,10 @@ use app\Entity\Product;
 class CatalogController extends AbstractController
 {
     function view() {
-        $list_product = [];
+        $repo = new \app\Entity\repository\Product();
+        $list_product = $repo->findAll();
 
-        $list_product[] = new Product('Lampe', 10);
-        $list_product[] = new Product('Tapis', 100);
+
         echo $this->render('catalogues/view.phtml', ['products' => $list_product]);
     }
 

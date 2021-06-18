@@ -3,12 +3,14 @@ namespace app\Entity;
 
 class Product
 {
+    private $id;
     private $name;
     private $price;
 
 
-    public function __construct($name, $price)
+    public function __construct($id, $name, $price)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->price = $price;
     }
@@ -43,5 +45,13 @@ class Product
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
