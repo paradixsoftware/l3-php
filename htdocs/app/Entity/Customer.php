@@ -8,7 +8,7 @@ class Customer
 {
     private $id;
     private $name;
-    private $produid;
+    private $produit;
 
     /**
      * Customer constructor.
@@ -20,7 +20,7 @@ class Customer
     {
         $this->id = $id;
         $this->name = $name;
-        $this->produid = $produid;
+        $this->produit = $produid;
     }
 
     /**
@@ -52,17 +52,17 @@ class Customer
     /**
      * @return mixed
      */
-    public function getProduid()
+    public function getProduit()
     {
-        return $this->produid;
+        return $this->produit;
     }
 
     /**
-     * @param mixed $produid
+     * @param mixed $produit
      */
-    public function setProduid($produid)
+    public function setProduit($produit)
     {
-        $this->produid = $produid;
+        $this->produit = $produit;
     }
 
 
