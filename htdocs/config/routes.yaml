@@ -6,6 +6,14 @@ homepage:
   path: /
   controller: App\Controller\HomeController::home
 
+product:
+  path: /product
+  controller: App\Controller\ProductController::view
+
+customer:
+  path: /customer
+  controller: App\Controller\CustomerController::view
+
 productPage:
   path: /productInsert
   controller: App\Controller\InsertController::createProduct
