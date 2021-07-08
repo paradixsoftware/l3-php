@@ -1,0 +1,74 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <style>
+        #match_list {
+            padding-top: 45px;
+        }
+
+        #match_aff {
+            background-color: cadetblue;
+
+            margin-top: 5px;
+            margin-left: 0%;
+
+            width: 100%;
+
+
+            position: relative;
+            color: black;
+
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: black;
+            border-style: solid;
+        }
+
+        #match_aff .SCORE_WORD {
+            position: absolute;
+
+            margin-left: 44%;
+            margin-top: -10%;
+        }
+
+        #match_aff .SCORE {
+            position: absolute;
+
+            margin-left: 47%;
+            margin-top: -5%;
+        }
+
+        #match_aff .state {
+            margin-left: 90%;
+            margin-top: -4%;
+            position: absolute;
+        }
+    </style>
+
+    <p>Nom d'utilisateur : {{ app.user.username }}</p>
+    <p>Nombre de pronostiques : {{ prono|length }}</p>
+    <p>Nombre total de matchs : {{ matchlist|length }}</p>
+    <p>Vos points : {{ pts }}</p>
+
+    <h1>Vos pronostiques :</h1>
+    <div id="match_list">
+        {% for pr in prono %}
+            {% for match in  matchlist %}
+                {% if match.id == pr.matchId %}
+                    <div id="match_aff">
+                        <p class="datetime">{{ match.date|format_datetime('short', 'short', locale='fr') }}</p>
+                        <h3 class="state" style="color: darkblue">en cours</h3>
+
+                        <p class="domicile"> domicile : {{ match.domicile }}</p>
+                        <p class="exterieur"> exterieur : {{ match.exterieur }}</p>
+
+                        <h1 class="SCORE_WORD">SCORE</h1>
+
+                        <h2 class="SCORE">{{ pr.scoredomicile }}  -  {{ pr.scoreexterieur }}</h2>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+    </div>
+{% endblock %}

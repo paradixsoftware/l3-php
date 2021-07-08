@@ -1,0 +1,63 @@
+{%  extends "base.html.twig" %}
+
+
+{% block title %}HomePage!{% endblock %}
+
+{% block body %}
+    <style>
+        .todo {
+            color: red;
+        }
+
+        li {
+            color: green;
+        }
+    </style>
+
+    <p>Site de pronostique ! Pariez sur les gagnants des matchs de foot et gagnez des points.</p>
+
+    Homepage :
+    <ul>
+        <li>Description du site.</li>
+    </ul>
+
+    Liste de match :
+    <ul>
+        <li>Affichage des matchs (seulement ceux qui ne sont pas encore passés).</li>
+        <li>Remplir des pronostiques.</li>
+        <li>Si connecté : affiche la possibilité de faire des pronostiques.</li>
+        <li>Si non connecté : affiche seulement la liste des matchs.</li>
+        <li>Afficher les pronostique sur la liste.</li>
+    </ul>
+
+    Inscription :
+    <ul>
+        <li>Formulaire créé et fonctionnel.</li>
+    </ul>
+
+    Connexion :
+    <ul>
+        <li>Formulaire créé.</li>
+        <li class="todo">TODO : corriger problème de connexion lorsque l'on a pas de target path.</li>
+    </ul>
+
+    Formulaire de contact :
+    <ul>
+        <li>Formulaire créé.</li>
+    </ul>
+
+    Information du compte :
+    <ul>
+        <li>Récupération du nom du compte, de ses informations.</li>
+        <li>Récupérération de son nombre de pronostiques.</li>
+        <li>Récupération et affichage des pronostiques.</li>
+        <li>Récupération de son nombre de point</li>
+    </ul>
+
+    Classement
+    <ul>
+        <li>Affichage du classement.</li>
+    </ul>
+
+{% endblock %}
+

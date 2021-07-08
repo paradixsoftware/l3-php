@@ -12,8 +12,84 @@
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
+
+        <style>
+            body {
+                background-color: aliceblue;
+            }
+
+            #all-page-body {
+                position: absolute;
+                background-color: gainsboro;
+                width: 60%;
+                height: 90%;
+                position: center;
+
+                margin-left: 20%;
+                margin-top: 45px;
+            }
+
+            #header {
+                position: absolute;
+                background-color: #001f3f;
+                opacity: 60%;
+
+                left:0%;
+                top:0%;
+                width: 100%;
+                height: 50px;
+
+            }
+
+            #header button {
+                background-color: #555555;
+                border: none;
+                color: #7FDBFF;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+
+                opacity: 80%;
+                font-size: 16px;
+            }
+
+            #header button:hover {
+                background-color: #2f294b;
+                color: gainsboro;
+            }
+
+            #header .connect_btn {
+                position: absolute;
+                right: 0px;
+            }
+            #header a {
+                text-decoration: none;
+                color: #7FDBFF;
+            }
+        </style>
+
+
+        <div id="header">
+            <div style="text-align: center;">
+                <button><a href="/">Accueil</a></button>
+                {% if app.user %}
+                    <button><a href="info">Mon compte</a></button>
+                {% endif %}
+
+                <button><a href="match">Liste des matchs</a></button>
+                <button><a href="contact">Contact</a></button>
+                {% if not app.user %}
+                    <button id="btn_inscription" class="btn_inscription"><a href="inscription">S'inscrire</a></button>
+                    <button id="btn_connect" class="connect_btn"><a href="connexion">se connecter</a></button>
+                {% endif %}
+                <button><a href="classement">Classement</a></button>
+            </div>
+        </div>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div id="all-page-body">
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>

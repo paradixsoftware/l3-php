@@ -1,0 +1,158 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des matchs{% endblock %}
+
+{% block body %}
+
+    <style>
+        #match_list {
+            padding-top: 45px;
+        }
+
+        #match_aff {
+            background-color: cadetblue;
+
+            margin-top: 5px;
+            margin-left: 19%;
+
+            width: 60%;
+
+
+            position: relative;
+            color: black;
+
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: black;
+            border-style: solid;
+        }
+
+        #match_aff .SCORE_WORD {
+            position: absolute;
+
+            margin-left: 44%;
+            margin-top: -15%;
+        }
+
+        #match_aff .SCORE {
+            position: absolute;
+
+            margin-left: 47%;
+            margin-top: -8%;
+        }
+
+        #match_aff .SCORE_CONNECTED {
+            position: absolute;
+
+            margin-left: 51%;
+            margin-top: -8%;
+        }
+
+        #match_aff .prono_domicile {
+            width: 8px;
+        }
+
+        #match_aff .prono_ext {
+            width: 8px;
+        }
+
+        #match_aff .state {
+            margin-left: 85%;
+            margin-top: -5%;
+            position: absolute;
+        }
+
+        #match_aff .save_btn {
+            position: absolute;
+
+            margin-left: 75%;
+            margin-top: -8%;
+            background-color: #555555;
+            border: none;
+            color: #7FDBFF;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+
+            opacity: 80%;
+            font-size: 16px;
+        }
+
+        #match_aff .save_btn:hover {
+            background-color: #2f294b;
+            color: gainsboro;
+        }
+
+        #match_aff .prono_domicile {
+            position: absolute;
+            margin-left: 45%;
+            margin-top: -8%;
+        }
+
+        #match_aff .prono_ext {
+            position: absolute;
+            margin-left: 55%;
+            margin-top: -8%;
+        }
+    </style>
+
+    <div id="match_list">
+
+        {% if app.user %}
+            {% for prono in prono_list %}
+                {% for match in  matchlist %}
+                    {% if match.date > date() %}
+                        <div id="match_aff" class="{{ match.id }}">
+                            <p class="datetime">{{ match.date|format_datetime('short', 'short', locale='fr') }}</p>
+                            <h3 class="state" style="color: darkblue">en cours</h3>
+
+                            <p class="domicile"> domicile : {{ match.domicile }}</p>
+                            <p class="exterieur"> exterieur : {{ match.exterieur }}</p>
+
+                            <h1 class="SCORE_WORD">SCORE</h1>
+                            {% if not match.date > "now" %}
+                                <h2 class="SCORE">{{ match.scoredomicile }}  -  {{ match.scoreexterieur }}</h2>
+                            {% else %}
+
+                                <form method="POST" action="{{ path("insert_prono", {'match_id': match.id, 'user_id': app.user.id}) }}">
+                                    {% if prono.matchid == match.id %}
+                                        <input name="p_dom" class="prono_domicile" type="text" value="{{ prono.scoredomicile }}">
+                                        <h2 class="SCORE_CONNECTED">-</h2>
+                                        <input name="p_ext" class="prono_ext" type="text" value="{{ prono.scoreexterieur }}">
+                                    {% else %}
+                                        <input name="p_dom" class="prono_domicile" type="text">
+                                        <h2 class="SCORE_CONNECTED">-</h2>
+                                        <input name="p_ext" class="prono_ext" type="text">
+                                    {% endif %}
+
+                                    <input type="submit" class="save_btn" value="sauvegarder">
+                                </form>
+                            {%  endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+
+        {% else %}
+            {% for match in  matchlist %}
+                {% if match.date > date() %}
+                    <div id="match_aff" class="{{ match.id }}">
+                        <p class="datetime">{{ match.date|format_datetime('short', 'short', locale='fr') }}</p>
+                        <h3 class="state" style="color: darkblue">en cours</h3>
+
+                        <p class="domicile"> domicile : {{ match.domicile }}</p>
+                        <p class="exterieur"> exterieur : {{ match.exterieur }}</p>
+
+                        <h1 class="SCORE_WORD">SCORE</h1>
+                        <h2 class="SCORE">{{ match.scoredomicile }}  -  {{ match.scoreexterieur }}</h2>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
+
+
+    </div>
+{% endblock %}

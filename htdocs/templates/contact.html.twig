@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <style>
+        .message {
+            position: absolute;
+
+            margin-top: 5%;
+            margin-left: -10%;
+
+            width: 98%;
+            height: 75%;
+        }
+
+        .button_c {
+            position: absolute;
+            margin-top: 61%;
+
+            margin-left: 0.5%;
+            width: 99%;
+            height: 45px;
+        }
+    </style>
+
+
+    {{ form(form) }}
+
+{% endblock %}

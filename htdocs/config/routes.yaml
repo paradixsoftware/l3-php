@@ -1,23 +1,31 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\HomeController::home
 
-homepage:
-  path: /
-  controller: App\Controller\HomeController::home
+matchs:
+    path: /match
+    controller: App\Controller\MatchController::home
 
-product:
-  path: /catalog
-  controller: App\Controller\ProductController::view
+connexion:
+    path: /connexion
+    controller: App\Controller\ConnexionController::login
 
-customer:
-  path: /customer
-  controller: App\Controller\CustomerController::view
+inscription:
+    path: /inscription
+    controller: App\Controller\RegistrationController::register
 
-productPage:
-  path: /productInsert
-  controller: App\Controller\InsertController::createProduct
+info:
+    path: /info
+    controller: App\Controller\CompteInfoController::get_info
 
-CustomerPage:
-  path: /customerInsert
-  controller: App\Controller\InsertController::createCustomer
+contact:
+    path: /contact
+    controller: App\Controller\ContactController::contact
+
+classement:
+    path: /classement
+    controller: App\Controller\ClassementController::show_classement
+
+insert_prono:
+    path: /insert_prono
+    controller: App\Controller\PronoController::index
