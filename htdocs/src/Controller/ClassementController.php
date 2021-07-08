@@ -39,8 +39,10 @@ class ClassementController extends AbstractController
 
                         if($prono_winner == "EXT") {
                             if($m_ext == $p_ext) $count_for_match = 3;
+                            if($m->getDate() > new \DateTime()) $count_for_match = 0;
                         } else {
                             if($m_dom == $p_dom) $count_for_match = 3;
+                            if($m->getDate() > new \DateTime()) $count_for_match = 0;
                         }
 
                         $points += $count_for_match;

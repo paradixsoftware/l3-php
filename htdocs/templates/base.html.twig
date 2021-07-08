@@ -73,15 +73,13 @@
         <div id="header">
             <div style="text-align: center;">
                 <button><a href="/">Accueil</a></button>
-                {% if app.user %}
-                    <button><a href="info">Mon compte</a></button>
-                {% endif %}
+                <button><a href="info">Mon compte</a></button>
 
                 <button><a href="match">Liste des matchs</a></button>
                 <button><a href="contact">Contact</a></button>
                 {% if not app.user %}
                     <button id="btn_inscription" class="btn_inscription"><a href="inscription">S'inscrire</a></button>
-                    <button id="btn_connect" class="connect_btn"><a href="connexion">se connecter</a></button>
+                    <!-- <button id="btn_connect" class="connect_btn"><a href="connexion">se connecter</a></button> -->
                 {% endif %}
                 <button><a href="classement">Classement</a></button>
             </div>
