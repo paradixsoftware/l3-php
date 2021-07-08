@@ -14,6 +14,8 @@ use App\Repository\MatchsRepository;
 class ContactController extends AbstractController
 {
     public function contact(Request $request) {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $message = new Messages();
         $user = $this->getUser();
 
