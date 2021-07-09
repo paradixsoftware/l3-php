@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\PronosticsRepository;
 use App\Entity\Pronostics;
 
 class PronoController extends AbstractController
@@ -13,11 +14,12 @@ class PronoController extends AbstractController
     /**
      * @Route("/prono", name="prono")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, PronosticsRepository $repo): Response
     {
         $PronoManager = $this->getDoctrine()->getManager();
+        $prono = $repo->findOneBy(['user_id' => $_GET["user_id"], 'match_id' => $_GET["match_id"]]);
 
-        $prono = new Pronostics();
+        if(!$prono) $prono = new Pronostics();
         $prono->setMatchId($_GET["match_id"]);
         $prono->setUserId($_GET["user_id"]);
         $prono->setScoreDomicile($request->request->get('p_dom'));

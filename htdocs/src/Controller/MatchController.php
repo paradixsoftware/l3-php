@@ -15,11 +15,30 @@ class MatchController extends AbstractController
         $user = $this->getUser();
         $array = [];
 
-        if($user != NULL) {
+        if($user) {
             $array = $pronosticsRepository->findBy(['user_id' => $user->getId()]);
         }
 
-        return $this->render("match.html.twig", ['matchlist' => $matchs, 'prono_list' => $array]);
+        $page = 1;
+        if(isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+
+        $nbpages = ceil(sizeof($matchs) / 5);
+
+        if($page > $nbpages) {
+            $page = $nbpages;
+        }
+
+        $match_array = [];
+
+        foreach ($matchs as $m) {
+            if($m->getId() >= ($page * 5) - 5 && $m->getId() <= 5*$page) {
+                array_push($match_array, $m);
+            }
+        }
+
+        return $this->render("match.html.twig", ['matchlist' => $match_array, 'prono_list' => $array, 'nbpage' => $nbpages, 'page' => $page]);
     }
 
 }

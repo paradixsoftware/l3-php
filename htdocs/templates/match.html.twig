@@ -92,6 +92,13 @@
             margin-left: 55%;
             margin-top: -8%;
         }
+
+        .pagination {
+            margin-left: 45%;
+        }
+        .pagination a {
+            text-decoration: none;
+        }
     </style>
     <h1><center>MATCHS EN COURS</center></h1>
     <div id="match_list">
@@ -101,28 +108,31 @@
                     <div id="match_aff" class="{{ match.id }}">
                         <p class="datetime">{{ match.date|format_datetime('short', 'short', locale='fr') }}</p>
                         <h3 class="state" style="color: darkblue">en cours</h3>
-
                         <p class="domicile"> domicile : {{ match.domicile }}</p>
                         <p class="exterieur"> exterieur : {{ match.exterieur }}</p>
-
                         <h1 class="SCORE_WORD">SCORE</h1>
                         {% if not match.date > "now" %}
                             <h2 class="SCORE">{{ match.scoredomicile }}  -  {{ match.scoreexterieur }}</h2>
                         {% else %}
 
                             <form method="POST" action="{{ path("insert_prono", {'match_id': match.id, 'user_id': app.user.id}) }}">
+                                {% set pronos = NULL %}
 
                                 {% for prono in prono_list %}
                                     {% if prono.matchid == match.id %}
-                                        <input name="p_dom" class="prono_domicile" type="text" value="{{ prono.scoredomicile }}">
-                                        <h2 class="SCORE_CONNECTED">-</h2>
-                                        <input name="p_ext" class="prono_ext" type="text" value="{{ prono.scoreexterieur }}">
-                                    {% else %}
-                                        <input name="p_dom" class="prono_domicile" type="text" value="0">
-                                        <h2 class="SCORE_CONNECTED">-</h2>
-                                        <input name="p_ext" class="prono_ext" type="text"  value="0">
+                                        {% set pronos = prono %}
                                     {% endif %}
                                 {% endfor %}
+
+                                {% if pronos %}
+                                    <input name="p_dom" class="prono_domicile" type="text" value="{{ pronos.scoredomicile }}">
+                                    <h2 class="SCORE_CONNECTED">-</h2>
+                                    <input name="p_ext" class="prono_ext" type="text" value="{{ pronos.scoreexterieur }}">
+                                {% else %}
+                                    <input name="p_dom" class="prono_domicile" type="text" value="0">
+                                    <h2 class="SCORE_CONNECTED">-</h2>
+                                    <input name="p_ext" class="prono_ext" type="text"  value="0">
+                                {% endif %}
 
                                 {%  if prono_list|length == 0 %}
                                     <input name="p_dom" class="prono_domicile" type="text" value="0">
@@ -173,4 +183,17 @@
                 {% endif %}
             {% endfor %}
     </div>
+
+    <p class="pagination">
+        {% if page > 1 %}
+            <a href="?page={{ page-1 }}"> < </a>
+        {% endif %}
+
+        {% for i in  1..nbpage%}
+            <a href="?page={{ i }}">{{ i }}</a>
+        {% endfor %}
+        {% if page < nbpage %}
+            <a href="?page={{ page+1 }}"> > </a>
+        {% endif %}
+    </p>
 {% endblock %}
