@@ -42,6 +42,24 @@ class Matchs
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $tiraubut;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $winner;
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +121,30 @@ class Matchs
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getTiraubut(): ?bool
+    {
+        return $this->tiraubut;
+    }
+
+    public function setTiraubut(bool $tiraubut): self
+    {
+        $this->tiraubut = $tiraubut;
+
+        return $this;
+    }
+
+    public function getWinner(): ?string
+    {
+        return $this->winner;
+    }
+
+    public function setWinner(string $winner): self
+    {
+        $this->winner = $winner;
 
         return $this;
     }

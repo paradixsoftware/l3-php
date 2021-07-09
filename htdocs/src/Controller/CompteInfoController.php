@@ -14,7 +14,7 @@ class CompteInfoController extends AbstractController
     public function get_info(PronosticsRepository $repo, MatchsRepository $matchsRepository) {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $matchs = $matchsRepository->findAll();
+        $matchs = $matchsRepository->findAllJson();
         $user = $this->getUser();
 
         $pronos = $repo->findBy(array('user_id' => $user->getId()));

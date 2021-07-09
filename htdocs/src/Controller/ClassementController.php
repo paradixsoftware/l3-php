@@ -14,7 +14,7 @@ class ClassementController extends AbstractController
 {
     public function show_classement(UserRepository $userRepository, MatchsRepository $matchsRepository, PronosticsRepository $pronosticsRepository) {
         $users = $userRepository->findAll();
-        $matchs = $matchsRepository->findAll();
+        $matchs = $matchsRepository->findAllJson();
         $values = [];
 
         foreach ($users as $u) {

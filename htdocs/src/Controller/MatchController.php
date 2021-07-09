@@ -11,7 +11,7 @@ use App\Repository\PronosticsRepository;
 class MatchController extends AbstractController
 {
     public function home(MatchsRepository $matchsRepository, PronosticsRepository $pronosticsRepository) {
-        $matchs = $matchsRepository->findAll();
+        $matchs = $matchsRepository->findAllJson();
         $user = $this->getUser();
         $array = [];
 
