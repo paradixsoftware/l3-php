@@ -162,7 +162,7 @@
                 {% if match.date < date() %}
                     <div id="match_aff" class="{{ match.id }}">
                         <p class="datetime">{{ match.date|format_datetime('short', 'short', locale='fr') }}</p>
-                        <h3 class="state" style="color: red">terminés</h3>
+                        <h3 class="state" style="color: red">terminé</h3>
 
                         <p class="domicile"> domicile : {{ match.domicile }}</p>
                         <p class="exterieur"> exterieur : {{ match.exterieur }}</p>
