@@ -20,7 +20,29 @@ class CompteInfoController extends AbstractController
         $pronos = $repo->findBy(array('user_id' => $user->getId()));
         $points = 0;
 
+        $page = 1;
+        if(isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+
+        $nbpages = ceil(sizeof($pronos) / 5);
+
+        if($page > $nbpages) {
+            $page = $nbpages;
+        }
+
+        $match_array = [];
+
+        foreach ($matchs as $m) {
+            if($m->getId() >= ($page * 5) - 5 && $m->getId() <= 5*$page) {
+                array_push($match_array, $m);
+            }
+        }
+
         foreach ($pronos as $p) {
+            if($p->getId() < ($page * 5) - 5 && $p->getId() >= 5*$page)
+                continue;
+
             foreach ($matchs as $m) {
                 if($m->getId() == $p->getMatchId()) {
                     $count_for_match = 0;
@@ -49,6 +71,6 @@ class CompteInfoController extends AbstractController
             }
         }
 
-        return $this->render("info.html.twig", ['prono' => $pronos, 'matchlist' => $matchs, 'pts' => $points]);
+        return $this->render("info.html.twig", ['prono' => $pronos, 'matchlist' => $matchs, 'pts' => $points, 'nbpage' => $nbpages, 'page' => $page]);
     }
 }

@@ -39,6 +39,13 @@
             margin-top: -4%;
             position: absolute;
         }
+
+        .pagination {
+            margin-left: 48%;
+        }
+        .pagination a {
+            text-decoration: none;
+        }
     </style>
 
     <p>Nom d'utilisateur : {{ app.user.username }}</p>
@@ -66,5 +73,17 @@
             {% endfor %}
         {% endfor %}
 
+        <p class="pagination">
+            {% if page > 1 %}
+                <a href="?page={{ page-1 }}"> < </a>
+            {% endif %}
+
+            {% for i in  1..nbpage%}
+                <a href="?page={{ i }}">{{ i }}</a>
+            {% endfor %}
+            {% if page < nbpage %}
+                <a href="?page={{ page+1 }}"> > </a>
+            {% endif %}
+        </p>
     </div>
 {% endblock %}
