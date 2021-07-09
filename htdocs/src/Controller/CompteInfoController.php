@@ -31,17 +31,14 @@ class CompteInfoController extends AbstractController
             $page = $nbpages;
         }
 
-        $match_array = [];
+        $prono_array = [];
 
-        foreach ($matchs as $m) {
-            if($m->getId() >= ($page * 5) - 5 && $m->getId() <= 5*$page) {
-                array_push($match_array, $m);
-            }
-        }
+        foreach ($pronos as $p)
+            if($p->getId() >= ($page * 5) - 5 && $p->getId() <= 5*$page)
+                array_push($prono_array, $p);
+
 
         foreach ($pronos as $p) {
-            if($p->getId() < ($page * 5) - 5 && $p->getId() >= 5*$page)
-                continue;
 
             foreach ($matchs as $m) {
                 if($m->getId() == $p->getMatchId()) {
@@ -71,6 +68,6 @@ class CompteInfoController extends AbstractController
             }
         }
 
-        return $this->render("info.html.twig", ['prono' => $pronos, 'matchlist' => $matchs, 'pts' => $points, 'nbpage' => $nbpages, 'page' => $page]);
+        return $this->render("info.html.twig", ['prono' => $prono_array, 'matchlist' => $matchs, 'pts' => $points, 'nbpage' => $nbpages, 'page' => $page]);
     }
 }

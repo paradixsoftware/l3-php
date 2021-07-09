@@ -17,7 +17,21 @@ class ClassementController extends AbstractController
         $matchs = $matchsRepository->findAllJson();
         $values = [];
 
+        $page = 1;
+        if(isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        $limit = 17;
+        $nbpages = ceil(sizeof($users) / $limit);
+
+        if($page > $nbpages) {
+            $page = $nbpages;
+        }
+
         foreach ($users as $u) {
+            if($u->getId() < (($page * $limit) - $limit) && $u->getId() >= $limit*$page)
+                continue;
+
             $pronostics = $pronosticsRepository->findBy(array('user_id' => $u->getId()));
             $points = 0;
 
@@ -57,7 +71,9 @@ class ClassementController extends AbstractController
         rsort($values);
 
         return $this->render("Classement.html.twig", [
-            'values' => $values
+            'values' => $values,
+            'nbpage' => $nbpages,
+            'page' => $page
         ]);
     }
 }

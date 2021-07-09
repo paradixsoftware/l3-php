@@ -37,6 +37,12 @@
             color: #009879;
         }
 
+        .pagination {
+            margin-left: 48%;
+        }
+        .pagination a {
+            text-decoration: none;
+        }
     </style>
 
     <table class="styled-table">
@@ -56,5 +62,17 @@
         {% endfor %}
     </table>
 
+    <p class="pagination">
+        {% if page > 1 %}
+            <a href="?page={{ page-1 }}"> < </a>
+        {% endif %}
+
+        {% for i in  1..nbpage%}
+            <a href="?page={{ i }}">{{ i }}</a>
+        {% endfor %}
+        {% if page < nbpage %}
+            <a href="?page={{ page+1 }}"> > </a>
+        {% endif %}
+    </p>
 
 {% endblock %}
